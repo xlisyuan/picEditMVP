@@ -474,7 +474,4 @@ const handleClickCanvas = (event: MouseEvent) => {
   height: 100%;
   overflow: hidden;
 }
-.canvas-content {
-  /* 這裡不需額外樣式，transform 由上方 inline style 控制 */
-}
 </style>
