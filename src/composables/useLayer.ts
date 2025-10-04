@@ -79,19 +79,26 @@ const contentBounds = computed(() => {
 // --- 核心操作函式 ---
 
 // 新增圖層 (用於 Ctrl+V 貼上)
-const addLayer = (url: string, width: number, height: number) => {
-	const newLayer: Layer = {
-		id: nextLayerId++,
-		url,
-		x: 50, // 初始位置
-		y: 50,
-		zIndex: maxZIndex.value + 1, // 確保新圖層在最上層
-		width,
-		height,
-	};
-	layers.value.push(newLayer);
-	focusedLayerId.value = newLayer.id;
-};
+// 支援指定 x, y 位置
+const addLayer = (
+    url: string,
+    width: number,
+    height: number,
+    x: number = 50,
+    y: number = 50
+) => {
+    const newLayer: Layer = {
+        id: nextLayerId++,
+        url,
+        x,
+        y,
+        zIndex: maxZIndex.value + 1, // 確保新圖層在最上層
+        width,
+        height,
+    };
+    layers.value.push(newLayer);
+    focusedLayerId.value = newLayer.id;
+}
 
 // 更新圖層位置 (deltaX, deltaY 為位移量)
 const updateLayerPosition = (id: number, deltaX: number, deltaY: number) => {
